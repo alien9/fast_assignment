@@ -1,4 +1,4 @@
-# CUROTEC Technica Assessment
+# CUROTEC Technical Assessment
 by Tiago Barufi
 
 ## This is an experiment aimed at a demonstration of ORM, web service and geospatial capabilities.
