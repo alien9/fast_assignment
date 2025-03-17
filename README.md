@@ -3,7 +3,7 @@ by Tiago Barufi
 
 ## This is an experiment aimed at a demonstration of ORM, web service and geospatial capabilities.
 The goal of this app is to demonstrate some concepts I find interesting, both for geospatial as for text searching and frontend rendering using the React-Leaflet library. I tried to show some React capabilities with Tailwind css and Leaflet. Unfortunately, Leaflet broke my test suite and I couldn't figure out yet how to solve the issue.
-The backend has more torough unit testing as the database can be replicated with satialite and the whoosh index also can be generated and properly tested.
+The backend has more torough unit testing as the database can be replicated with spatialite and the whoosh index also can be generated and properly tested.
 
 ### Requisites
 
