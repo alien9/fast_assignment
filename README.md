@@ -5,7 +5,7 @@ by Tiago Barufi
 The goal of this app is to demonstrate some concepts I find interesting, both for geospatial as for text searching and frontend rendering using the React-Leaflet library.
 
 
-### Requisistes
+### Requisites
 
 docker and docker-compose
 PostgreSQL 15 or upper, with the PostGIS extension enabled
@@ -27,7 +27,9 @@ This command will create the containers and the app will be available at http://
 
 ### testing
 `docker exec -ti backend pytest` 
+
 to trigger the backend tests. The frontend runs as 
+
 `docker exec -ti frontend npm test`
 
 ### Using the application

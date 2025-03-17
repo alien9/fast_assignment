@@ -15,9 +15,6 @@ COPY tailwind.config.js /app/
 
 # Install dependencies
 RUN npm install
- 
-
-
 # Expose the port your app runs on
 EXPOSE 3000
  

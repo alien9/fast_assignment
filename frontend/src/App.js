@@ -1,7 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
-import Cookies from 'universal-cookie';
 import { MapContainer, TileLayer, useMap, Polyline } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
@@ -14,11 +13,7 @@ function ChangeView({ center }) {
   return null;
 }
 
-const cookies = new Cookies();
-
-let style = { width: '66%' };
 function App() {
-  const [completed, setCompleted] = useState(0);
   const [loading, setLoading] = useState(false);
   const [words, setWords] = useState([]);
   const [selectedWord, setSelected] = useState(null)
@@ -28,7 +23,6 @@ function App() {
   const upload = (event) => {
     const file = event.target.files[0];
     if (!file) {
-      setCompleted(0);
       return;
     }
     setLoading(true);
@@ -37,7 +31,6 @@ function App() {
     formData.append('file', file);
     formData.append('id', id)
     fetch('http://localhost:2000/upload/', { method: 'POST', body: formData }).then(async (d) => {
-      const data = await d.json();
       setLoading(false);
     });
   }
@@ -92,7 +85,6 @@ function App() {
         });
     }
   }
-  let percents = completed;
   const color = { color: 'red' }
   return (
     <div className="relative">
@@ -111,7 +103,7 @@ function App() {
           </div>
           <div id="listbox" className="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700" style={{ display: (words.length) ? 'block' : 'none' }} role="listbox" data-hs-combo-box-output="">
             {words.map((item, index) => (
-              <div className={`flex justify-between items-center p-2 w-full cursor-pointer ${(selectedWord == index) ? "bg-blue-800 text-white" : "bg-white"}`} key={`words_${index}`} onClick={clickRoad} id={`list_words_${index}`}>{item}</div>
+              <div className={`flex justify-between items-center p-2 w-full cursor-pointer ${(selectedWord === index) ? "bg-blue-800 text-white" : "bg-white"}`} key={`words_${index}`} onClick={clickRoad} id={`list_words_${index}`}>{item}</div>
             ))}
           </div>
         </div>
@@ -130,14 +122,12 @@ function App() {
           )}
         </MapContainer>
       </div></div>
-      <div className="App p-8">
+
+      <div className="App p-8 w-1/2">
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload files</label>
         <input
           onChange={upload}
           className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" />
-      </div>
-      <div className="p-8 w-full rounded-full h-2.5 dark:bg-gray-700">
-        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: percents + '%' }}></div>
       </div>
 
       {loading &&
@@ -151,9 +141,7 @@ function App() {
           </div>
         </div>
       }
-      <div className="border-black border block absolute w-100 min-h-50">
 
-      </div>
     </div>
 
 
